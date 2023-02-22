@@ -1,4 +1,7 @@
 {
   "testEnvironment": "jsdom",
-  "setupFilesAfterEnv": ["@testing-library/jest-dom", "jest-axe/extend-expect"]
+  "setupFilesAfterEnv": [
+    "@testing-library/jest-dom/extend-expect",
+    "jest-axe/extend-expect"
+  ]
 }

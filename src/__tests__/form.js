@@ -1,6 +1,6 @@
+import React from 'react';
 import { render } from '@testing-library/react';
 import { Form } from '../form';
-import React from 'react';
 import { axe } from 'jest-axe';
 
 test('form is accessible', async () => {
