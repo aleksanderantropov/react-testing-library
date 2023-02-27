@@ -18,9 +18,18 @@ export class ErrorBoundary extends React.Component {
     report(error, info);
   }
 
+  tryAgain = () => {
+    this.setState({ hasError: false });
+  };
+
   render() {
     if (this.state.hasError) {
-      return <div role='alert'>Something went wrong</div>;
+      return (
+        <div role='alert'>
+          Something went wrong
+          <button onClick={this.tryAgain}>Try Again</button>
+        </div>
+      );
     }
 
     return this.props.children;
