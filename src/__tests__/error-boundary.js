@@ -26,11 +26,9 @@ afterEach(() => jest.clearAllMocks());
 
 test('renders error boundary', async () => {
   mockReport.mockResolvedValueOnce({ success: true });
-  const { rerender } = render(
-    <ErrorBoundary>
-      <Bomb shouldThrow />
-    </ErrorBoundary>
-  );
+  const { rerender } = render(<Bomb shouldThrow />, {
+    wrapper: ErrorBoundary,
+  });
 
   const error = expect.any(Error);
   const info = { componentStack: expect.any(String) };
@@ -52,11 +50,7 @@ test('renders error boundary', async () => {
   mockReport.mockClear();
   console.error.mockClear();
 
-  rerender(
-    <ErrorBoundary>
-      <Bomb />
-    </ErrorBoundary>
-  );
+  rerender(<Bomb />);
 
   const button = screen.getByText(/try again/i);
   await userEvent.click(button);
