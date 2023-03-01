@@ -1,5 +1,5 @@
 import React from 'react';
-import { report } from './api';
+import { reportError } from './api';
 
 export class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    report(error, info);
+    reportError(error, info);
   }
 
   tryAgain = () => {

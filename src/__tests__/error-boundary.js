@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { ErrorBoundary } from '../error-boundary';
-import { report as mockReport } from '../api';
+import { reportError as mockReport } from '../api';
 import userEvent from '@testing-library/user-event';
 
 jest.mock('../api');
