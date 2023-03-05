@@ -1,15 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { render, screen } from 'test-utils';
 import { Main } from '../router-main';
 import user from '@testing-library/user-event';
 
 test('renders Main and can navigate', async () => {
-  render(
-    <MemoryRouter initialEntries={['/']}>
-      <Main />
-    </MemoryRouter>
-  );
+  render(<Main />);
 
   expect(screen.getByRole('heading')).toHaveTextContent(/home/i);
 
@@ -19,11 +14,7 @@ test('renders Main and can navigate', async () => {
 });
 
 test('renders NotFound when wrong route', async () => {
-  render(
-    <MemoryRouter initialEntries={['/404']}>
-      <Main />
-    </MemoryRouter>
-  );
+  render(<Main />, { route: '/404' });
 
   expect(screen.getByRole('heading')).toHaveTextContent(/not found/i);
 });
