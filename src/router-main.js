@@ -19,6 +19,15 @@ const Home = () => {
   );
 };
 
+const NotFound = () => {
+  return (
+    <div>
+      <h1>Not Found</h1>
+      <div>No such page</div>
+    </div>
+  );
+};
+
 export const Main = () => {
   return (
     <div>
@@ -27,6 +36,7 @@ export const Main = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
   );

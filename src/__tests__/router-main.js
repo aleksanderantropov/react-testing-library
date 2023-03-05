@@ -17,3 +17,13 @@ test('renders Main and can navigate', async () => {
 
   expect(screen.getByRole('heading')).toHaveTextContent(/about/i);
 });
+
+test('renders NotFound when wrong route', async () => {
+  render(
+    <MemoryRouter initialEntries={['/404']}>
+      <Main />
+    </MemoryRouter>
+  );
+
+  expect(screen.getByRole('heading')).toHaveTextContent(/not found/i);
+});
