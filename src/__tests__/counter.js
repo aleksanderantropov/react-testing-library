@@ -1,19 +1,26 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from 'test-utils';
 import { Counter } from '../counter';
-import userEvent from '@testing-library/user-event';
+import user from '@testing-library/user-event';
 
 test('correctly renders Counter', async () => {
-  const { rerender } = render(<Counter />);
+  render(<Counter />);
 
-  expect(screen.getByText(/count/i)).toBeInTheDocument();
+  const output = screen.getByText(/count: 0/i);
 
-  const button = screen.getByText(/increment/i);
-  await userEvent.click(button);
+  await user.click(screen.getByRole('button', { name: '-' }));
 
-  expect(screen.getByText(/count/i)).toHaveTextContent('1');
+  expect(output).toHaveTextContent(/count: -1/i);
 
-  rerender(<Counter />);
+  await user.click(screen.getByRole('button', { name: '+' }));
 
-  screen.debug();
+  expect(output).toHaveTextContent(/count: 0/i);
+});
+
+test('correctly renders Counter with initial state', () => {
+  render(<Counter />, {
+    preloadedState: { counter: { value: 4 } },
+  });
+
+  expect(screen.getByText(/count: /i)).toHaveTextContent('4');
 });
